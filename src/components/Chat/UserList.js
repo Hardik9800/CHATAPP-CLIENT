@@ -1,9 +1,21 @@
 // components/Chat/UserList.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import WebSocketService from '../../services/WebSocketService';
 
 function UserList() {
-  // Retrieve and display the list of users in the chat room
-  const users = [];
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Listen for updates to the user list and update the state
+    WebSocketService.on('userList', (userList) => {
+      setUsers(userList);
+    });
+
+    // Cleanup the WebSocket listener on unmount
+    return () => {
+      WebSocketService.off('userList');
+    };
+  }, []);
 
   return (
     <div>

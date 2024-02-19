@@ -1,14 +1,20 @@
 // services/WebSocketService.js
 import io from 'socket.io-client';
 
-const socket = io(process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001');
+const socket = io('http://localhost:3001');
 
 const WebSocketService = {
+  on: (event, callback) => {
+    socket.on(event, callback);
+  },
+
+  off: (event) => {
+    socket.off(event);
+  },
+
   emit: (event, data) => {
     socket.emit(event, data);
   },
-
-  // Add other WebSocket-related functions as needed
 };
 
 export default WebSocketService;

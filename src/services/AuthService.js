@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AuthService = {
   login: async (username, password) => {
-    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001'}/auth/login`, {
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'https://chatapp-server-7883.onrender.com/'}/auth/login`, {
       username,
       password,
     });
@@ -11,7 +11,7 @@ const AuthService = {
   },
 
   register: async (username, password) => {
-    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001'}/auth/register`, {
+    const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL || 'https://chatapp-server-7883.onrender.com/'}/auth/register`, {
       username,
       password,
     });
